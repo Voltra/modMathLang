@@ -9,8 +9,10 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.junit.rules.TestName;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @SuppressWarnings({"unused", "unchecked", "WeakerAccess"})
 public class VocabularyTest {
@@ -68,6 +70,21 @@ public class VocabularyTest {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @Test
+    public void onceScannedLowerCasedInputIsTheSameAsInnerSet(){
+        Vocabulary v = new Vocabulary();
+        Set<String> set = new HashSet<>();
+        set.add("unit");
+        set.add("test");
+        set.add("rules");
+
+        v.scanNgramSet(set);
+
+        set = set.stream().map(String::toLowerCase).collect(Collectors.toSet());
+
+        assertEquals(set, v.getWords());
     }
 
 

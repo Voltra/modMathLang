@@ -38,7 +38,7 @@ public class NgramCounts implements NgramCountsInterface {
 	 */
 	public NgramCounts(){
 		this.ngramCounts = new HashMap<>();
-		this.order = 0;
+		this.setMaximalOrder(0);
         this.nbWordsTotal = 0;
 	}
 
@@ -96,6 +96,10 @@ public class NgramCounts implements NgramCountsInterface {
 
 		return this.ngramCounts.getOrDefault(ngram.toLowerCase(), 0);
 	}
+
+	public Map<String, Integer> getNgramCounts(){
+	    return new HashMap<>(this.ngramCounts);
+    }
 	
 
 	@Override
@@ -111,7 +115,10 @@ public class NgramCounts implements NgramCountsInterface {
 	public void setCounts(String ngram, int counts) {
 		NoNullParams.assertNoneNull(ngram, counts);
 
-		this.ngramCounts.replace(ngram.toLowerCase(), counts);
+		if(this.ngramCounts.containsKey(ngram.toLowerCase()))
+		    this.ngramCounts.replace(ngram.toLowerCase(), counts);
+		else
+		    this.ngramCounts.put(ngram.toLowerCase(), counts);
 	}
 
 
@@ -156,7 +163,7 @@ public class NgramCounts implements NgramCountsInterface {
 
 		this.ngramCounts = ngramCounts;
 		this.updateWordsTotal();
-		this.order = maximalOrder;
+		this.setMaximalOrder(maximalOrder);
     }
 
 
