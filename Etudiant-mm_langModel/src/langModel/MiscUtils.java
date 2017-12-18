@@ -29,10 +29,10 @@ public class MiscUtils {
 	 * @param filePath: the path of the file from which to read lines.
 	 * @return the list of sentences in the file.
 	 */
-	public static List<String> readTextFileAsStringList(String filePath) {
+	public static List<String> readTextFileAsStringList(String filePath) throws IOException{
 		BufferedReader reader;
 		List<String> lineList = new ArrayList<String>();
-		try {
+		/*try {*/
 			reader = new BufferedReader(new FileReader (filePath));
 
 			String line = reader.readLine();
@@ -41,13 +41,9 @@ public class MiscUtils {
 				line = reader.readLine();
 			} 
 			reader.close();
-		} 
-		catch (FileNotFoundException e) {
+		/*} catch (IOException e) {
 			e.printStackTrace();
-		}
-		catch (IOException e) {
-			e.printStackTrace();
-		}
+		}*/
 
 		return lineList;
 	}

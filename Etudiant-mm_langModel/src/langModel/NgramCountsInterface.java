@@ -1,6 +1,7 @@
 package langModel;
 
 
+import java.io.IOException;
 import java.util.Set;
 
 
@@ -95,7 +96,7 @@ public interface NgramCountsInterface {
 	 * @param vocab the object corresponding to the vocabulary.
 	 * @param maximalOrder the maximal order of n-grams to consider. 
 	 */
-	public void scanTextFile (String filePath, VocabularyInterface vocab, int maximalOrder);
+	public void scanTextFile (String filePath, VocabularyInterface vocab, int maximalOrder) throws IOException;
 	
 	
 	/**
@@ -116,5 +117,5 @@ public interface NgramCountsInterface {
 	 * 
 	 * @param filePath the path of the file in which the counts of the n-grams are saved.
 	 */
-	public void readNgramCountsFile (String filePath);
+	public void readNgramCountsFile (String filePath) throws IOException;
 }

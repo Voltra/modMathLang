@@ -1,5 +1,6 @@
 package langModel;
 
+import java.io.IOException;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -115,7 +116,7 @@ public class NgramCounts implements NgramCountsInterface {
 
 
 	@Override
-	public void scanTextFile(String filePath, VocabularyInterface vocab, int maximalOrder) {
+	public void scanTextFile(String filePath, VocabularyInterface vocab, int maximalOrder) throws IOException {
 		NoNullParams.assertNoneNull(filePath, vocab, maximalOrder);
 
 		Map<String, Integer> ngramCounts = MiscUtils.readTextFileAsStringList(filePath)
@@ -173,7 +174,7 @@ public class NgramCounts implements NgramCountsInterface {
 
 	
 	@Override
-	public void readNgramCountsFile(String filePath) {
+	public void readNgramCountsFile(String filePath) throws IOException {
 	    NoNullParams.assertNoneNull(filePath);
 
 	    final String re = "^([^\\d]+)\\t(\\d+)$";

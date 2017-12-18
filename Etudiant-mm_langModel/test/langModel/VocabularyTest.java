@@ -2,10 +2,15 @@ package langModel;
 
 import static org.junit.Assert.*;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 import org.junit.rules.TestName;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 public class VocabularyTest {
     @Test
@@ -38,10 +43,14 @@ public class VocabularyTest {
     }
 
     @Test
-    public void cannotReadFieThrowsException(){
+    public void cannotReadFileThrowsException(){
         Vocabulary v = new Vocabulary();
-        //TODO: Expects exception
-        v.readVocabularyFile("undefined path unit.test");
+        try {
+            v.readVocabularyFile("undefined path unit.test");
+            fail();
+        }catch(IOException e){
+            e.getCause();
+        }
     }
 
 
@@ -55,9 +64,21 @@ public class VocabularyTest {
     @Rule
     public TestName name = new TestName();
 
+    @Rule
+    public ExpectedException thrown = ExpectedException.none();
+
     @Before
     public void printSeparator()
     {
         System.out.println("\n=== " + name.getMethodName() + " =====================");
+    }
+
+    @After
+    public void printEnd(){
+        String str = "====";
+        for(int i = 0, size = name.getMethodName().length() ; i < size ; i+=1)
+            str += "=";
+        str += "======================";
+        System.out.println(str);
     }
 }

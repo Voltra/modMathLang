@@ -1,6 +1,7 @@
 package langModel;
 
 
+import java.io.IOException;
 import java.util.Set;
 
 
@@ -78,7 +79,7 @@ public interface VocabularyInterface {
 	 * 
 	 * @param filePath the path of the file containing the vocabulary.
 	 */
-	public void readVocabularyFile (String filePath);
+	public void readVocabularyFile (String filePath) throws IOException;
 
 	
 	/**

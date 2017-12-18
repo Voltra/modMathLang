@@ -1,5 +1,7 @@
 package langModel;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -64,7 +66,7 @@ public class Vocabulary implements VocabularyInterface {
 	}
 
 	@Override
-	public void readVocabularyFile(String filePath) {
+	public void readVocabularyFile(String filePath) throws IOException {
 		NoNullParams.assertNoneNull(filePath);
 
 		Set<String> set = new HashSet<>();
