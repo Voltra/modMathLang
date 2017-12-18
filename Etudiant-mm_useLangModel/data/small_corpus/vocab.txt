@@ -1,0 +1,12 @@
+antoine
+écoute
+de
+</s>
+thom
+lionel
+<s>
+denis
+chanson
+une
+autre
+elle

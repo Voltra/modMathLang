@@ -1,10 +1,9 @@
 package langModel;
 
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 
 /**
@@ -13,6 +12,7 @@ import java.util.Set;
  * @author N. Hernandez and S. Quiniou (2017)
  *
  */
+@SuppressWarnings({"unused", "unchecked", "WeakerAccess"})
 public class NgramCounts implements NgramCountsInterface {
 	/**
 	 * The maximal order of the n-gram counts.
@@ -22,7 +22,7 @@ public class NgramCounts implements NgramCountsInterface {
 	/**
 	 * The map containing the counts of each n-gram.
 	 */
-	protected Map<String,Integer> ngramCounts;
+	protected Map<String, Integer> ngramCounts;
 
 	/**
 	 * The total number of words in the corpus.
@@ -36,7 +36,9 @@ public class NgramCounts implements NgramCountsInterface {
 	 * Constructor.
 	 */
 	public NgramCounts(){
-		//TODO
+		this.ngramCounts = new HashMap<>();
+		this.order = 0;
+        this.nbWordsTotal = 0;
 	}
 
 
@@ -49,72 +51,161 @@ public class NgramCounts implements NgramCountsInterface {
 	 * @param order the maximal order of n-grams considered.
 	 */
 	private void setMaximalOrder (int order) {
-		// TODO Auto-generated method stub
+		this.order = order;
 	}
 
 	
 	@Override
 	public int getMaximalOrder() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.order;
 	}
 
 	
 	@Override
 	public int getNgramCounterSize() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.ngramCounts.size();
 	}
 
-	
+	protected int computeWordsTotal(){
+	    return this.ngramCounts.values()
+        .stream()
+        .reduce(0, Integer::sum);
+    }
+
+    protected void updateWordsTotal(){
+	    this.nbWordsTotal = this.computeWordsTotal();
+    }
+
 	@Override
 	public int getTotalWordNumber(){
-		// TODO Auto-generated method stub
-		return 0;
+	    this.updateWordsTotal();
+		return this.nbWordsTotal;
 	}
 	
 	
 	@Override
 	public Set<String> getNgrams() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.ngramCounts.keySet();
 	}
 
 	
 	@Override
 	public int getCounts(String ngram) {
-		// TODO Auto-generated method stub
-		return 0;
+		NoNullParams.assertNoneNull(ngram);
+
+		return this.ngramCounts.getOrDefault(ngram.toLowerCase(), 0);
 	}
 	
 
 	@Override
 	public void incCounts(String ngram) {
-		// TODO Auto-generated method stub
+		NoNullParams.assertNoneNull(ngram);
+
+		int currCount = this.getCounts(ngram.toLowerCase());
+		this.setCounts(ngram.toLowerCase(), currCount+1);
 	}
 
 	
 	@Override
 	public void setCounts(String ngram, int counts) {
-		// TODO Auto-generated method stub
+		NoNullParams.assertNoneNull(ngram, counts);
+
+		this.ngramCounts.replace(ngram.toLowerCase(), counts);
 	}
 
 
 	@Override
 	public void scanTextFile(String filePath, VocabularyInterface vocab, int maximalOrder) {
-		// TODO Auto-generated method stub
-	}
+		NoNullParams.assertNoneNull(filePath, vocab, maximalOrder);
 
-	
-	@Override
+		Map<String, Integer> ngramCounts = MiscUtils.readTextFileAsStringList(filePath)
+        .stream()//List<String>
+        .filter(Objects::nonNull)
+        .filter(line -> !line.matches("\\s+"))//List<String>
+        .map(String::toLowerCase)//List<String>
+        .map(line -> NgramUtils.getStringOOV(line, vocab))//List<String>
+        .map(line -> NgramUtils.decomposeIntoNgrams(line, maximalOrder))//List<List<String>>
+        .filter(Objects::nonNull)//List<List<String>>
+        .map(ngrams -> {
+            Map<String, Integer> map = new HashMap<>();
+            ngrams.stream()
+            .filter(Objects::nonNull)
+            .forEach(ngram -> {
+                if(!map.containsKey(ngram))
+                    map.put(ngram, 0);
+
+                int count = map.get(ngram);
+                map.replace(ngram, count+1);
+            });
+
+            return map;
+        })//List<HashMap<String, Integer>>
+        .reduce(new HashMap<>(), (acc, elem)->{
+            elem.entrySet().forEach(entry -> {
+                if(!acc.containsKey(entry.getKey()))
+                    acc.put(entry.getKey(), entry.getValue());
+                else{
+                    int oldCount = acc.get(entry.getKey());
+                    acc.replace(entry.getKey(), oldCount + entry.getValue());
+                }
+            });
+
+            return acc;
+        });//HashMap<String, Integer>
+
+		this.ngramCounts = ngramCounts;
+		this.updateWordsTotal();
+		this.order = maximalOrder;
+    }
+
+
+    @Override
 	public void writeNgramCountFile(String filePath) {
-		// TODO Auto-generated method stub
+		NoNullParams.assertNoneNull(filePath);
+
+		String fileContent = this.ngramCounts.entrySet()
+        .stream()//Set<Entry<String, Integer>>
+        .map(entry -> entry.getKey() + "\t" + entry.getValue())//String
+        .reduce("", String::concat);//String
+
+		MiscUtils.writeFile(fileContent, filePath, false);
 	}
 
 	
 	@Override
 	public void readNgramCountsFile(String filePath) {
-		// TODO Auto-generated method stub
+	    NoNullParams.assertNoneNull(filePath);
+
+	    final String re = "^([^\\d]+)\\t(\\d+)$";
+	    Pattern pre = Pattern.compile(re);
+		List<String> fromFile = MiscUtils.readTextFileAsStringList(filePath)
+        .stream()//List<String>
+        .filter(Objects::nonNull)//List<String>
+        .filter(line -> line.matches(re))//List<String>
+        .filter(line -> pre.matcher(line).matches())//List<String>
+        .filter(line -> pre.matcher(line).groupCount()==2)//List<String>
+        .collect(Collectors.toList());//List<String>
+
+		Map<String, Integer> ngramCounts = new HashMap<>();
+		for(String line : fromFile){
+            Matcher m = pre.matcher(line);
+            String ngram = m.group(1);
+            String amount_str = m.group(2);
+            int amount;
+
+            try{
+                amount = Integer.parseInt(amount_str);
+            }catch(Throwable t){
+                continue;
+            }
+
+            ngramCounts.put(ngram.toLowerCase(), amount);
+        }
+
+        this.updateWordsTotal();
+		this.order = ngramCounts.keySet().stream()
+        .map(ngram -> ngram.split("\\s+").length)
+        .reduce(0, Integer::max);
 	}
 
 }
