@@ -2,12 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="354bc4c2-1f85-4d7e-bfd0-55785cf0bda5" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/bin/langModel/Test.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/langModel/MiscUtils.java" afterPath="$PROJECT_DIR$/src/langModel/MiscUtils.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/test/langModel/vocab.txt" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/bin/langModel/Vocabulary.class" afterPath="$PROJECT_DIR$/bin/langModel/Vocabulary.class" />
+      <change beforePath="$PROJECT_DIR$/bin/langModel/VocabularyTest.class" afterPath="$PROJECT_DIR$/bin/langModel/VocabularyTest.class" />
       <change beforePath="$PROJECT_DIR$/src/langModel/NgramCounts.java" afterPath="$PROJECT_DIR$/src/langModel/NgramCounts.java" />
-      <change beforePath="$PROJECT_DIR$/src/langModel/NgramCountsInterface.java" afterPath="$PROJECT_DIR$/src/langModel/NgramCountsInterface.java" />
       <change beforePath="$PROJECT_DIR$/src/langModel/Vocabulary.java" afterPath="$PROJECT_DIR$/src/langModel/Vocabulary.java" />
-      <change beforePath="$PROJECT_DIR$/src/langModel/VocabularyInterface.java" afterPath="$PROJECT_DIR$/src/langModel/VocabularyInterface.java" />
       <change beforePath="$PROJECT_DIR$/test/langModel/VocabularyTest.java" afterPath="$PROJECT_DIR$/test/langModel/VocabularyTest.java" />
     </list>
     <ignored path="$PROJECT_DIR$/bin/" />
@@ -32,22 +32,13 @@
           <file leaf-file-name="VocabularyTest.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/test/langModel/VocabularyTest.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="115">
-                  <caret line="50" column="26" lean-forward="false" selection-start-line="50" selection-start-column="26" selection-end-line="50" selection-end-column="26" />
+                <state relative-caret-position="339">
+                  <caret line="70" column="5" lean-forward="true" selection-start-line="70" selection-start-column="5" selection-end-line="70" selection-end-column="5" />
                   <folding>
-                    <element signature="e#1633#1634#0" expanded="true" />
-                    <element signature="e#1727#1728#0" expanded="true" />
+                    <element signature="e#293#351#0" expanded="true" />
+                    <element signature="e#2107#2108#0" expanded="true" />
+                    <element signature="e#2201#2202#0" expanded="true" />
                   </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="Vocabulary.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/langModel/Vocabulary.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1396">
-                  <caret line="72" column="32" lean-forward="false" selection-start-line="72" selection-start-column="32" selection-end-line="72" selection-end-column="32" />
-                  <folding />
                 </state>
               </provider>
             </entry>
@@ -59,9 +50,25 @@
           <file leaf-file-name="Vocabulary.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/langModel/Vocabulary.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="191">
-                  <caret line="16" column="13" lean-forward="false" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
-                  <folding />
+                <state relative-caret-position="-912">
+                  <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                    <element signature="e#2302#2303#0" expanded="true" />
+                    <element signature="e#2349#2350#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="NgramCounts.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/langModel/NgramCounts.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="337">
+                  <caret line="222" column="27" lean-forward="false" selection-start-line="222" selection-start-column="27" selection-end-line="222" selection-end-column="27" />
+                  <folding>
+                    <element signature="e#6253#6254#0" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -82,6 +89,7 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/langModel/MiscUtils.java" />
+        <option value="$PROJECT_DIR$/test/langModel/vocab.txt" />
         <option value="$PROJECT_DIR$/src/langModel/Vocabulary.java" />
         <option value="$PROJECT_DIR$/test/langModel/VocabularyTest.java" />
         <option value="$PROJECT_DIR$/src/langModel/NgramCounts.java" />
@@ -323,8 +331,8 @@
     <history-entry file="VocabularyTest - 2017.12.18 at 13h 56m 44s.xml">
       <configuration name="VocabularyTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="VocabularyTest_cannotReadFieThrowsException - 2017.12.18 at 13h 37m 58s.xml">
-      <configuration name="VocabularyTest.cannotReadFieThrowsException" configurationId="JUnit" />
+    <history-entry file="VocabularyTest - 2017.12.18 at 14h 04m 44s.xml">
+      <configuration name="VocabularyTest" configurationId="JUnit" />
     </history-entry>
     <history-entry file="VocabularyTest_cannotReadFieThrowsException - 2017.12.18 at 13h 40m 19s.xml">
       <configuration name="VocabularyTest.cannotReadFieThrowsException" configurationId="JUnit" />
@@ -349,7 +357,7 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.056818184" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12824675" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="combo" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -357,6 +365,32 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
     </layout>
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+              <option name="COLUMN_ORDER">
+                <list>
+                  <option value="0" />
+                  <option value="1" />
+                  <option value="2" />
+                  <option value="3" />
+                </list>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
@@ -374,29 +408,44 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/langModel/Vocabulary.java">
+    <entry file="file://$PROJECT_DIR$/test/langModel/vocab.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1396">
-          <caret line="72" column="32" lean-forward="false" selection-start-line="72" selection-start-column="32" selection-end-line="72" selection-end-column="32" />
+        <state relative-caret-position="144">
+          <caret line="6" column="0" lean-forward="true" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/langModel/NgramCounts.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="211">
-          <caret line="185" column="30" lean-forward="false" selection-start-line="185" selection-start-column="30" selection-end-line="185" selection-end-column="30" />
-          <folding />
+        <state relative-caret-position="337">
+          <caret line="222" column="27" lean-forward="false" selection-start-line="222" selection-start-column="27" selection-end-line="222" selection-end-column="27" />
+          <folding>
+            <element signature="e#6253#6254#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/langModel/Vocabulary.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-912">
+          <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2302#2303#0" expanded="true" />
+            <element signature="e#2349#2350#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test/langModel/VocabularyTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="50" column="26" lean-forward="false" selection-start-line="50" selection-start-column="26" selection-end-line="50" selection-end-column="26" />
+        <state relative-caret-position="339">
+          <caret line="70" column="5" lean-forward="true" selection-start-line="70" selection-start-column="5" selection-end-line="70" selection-end-column="5" />
           <folding>
-            <element signature="e#1633#1634#0" expanded="true" />
-            <element signature="e#1727#1728#0" expanded="true" />
+            <element signature="e#293#351#0" expanded="true" />
+            <element signature="e#2107#2108#0" expanded="true" />
+            <element signature="e#2201#2202#0" expanded="true" />
           </folding>
         </state>
       </provider>

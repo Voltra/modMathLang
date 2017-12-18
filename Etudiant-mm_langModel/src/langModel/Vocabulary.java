@@ -1,6 +1,5 @@
 package langModel;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.Objects;
@@ -84,8 +83,22 @@ public class Vocabulary implements VocabularyInterface {
 
 		String fileContent = this.vocabulary.stream()
         .map(String::toLowerCase)
+        .map(str -> str+"\n")
 		.reduce("", String::concat);
 
 		MiscUtils.writeFile(fileContent, filePath, false);
 	}
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Vocabulary)) return false;
+        Vocabulary that = (Vocabulary) o;
+        return Objects.equals(vocabulary, that.vocabulary);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(vocabulary);
+    }
 }

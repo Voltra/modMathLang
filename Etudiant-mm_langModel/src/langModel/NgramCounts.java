@@ -209,4 +209,18 @@ public class NgramCounts implements NgramCountsInterface {
         .reduce(0, Integer::max);
 	}
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof NgramCounts)) return false;
+        NgramCounts that = (NgramCounts) o;
+        return order == that.order &&
+                nbWordsTotal == that.nbWordsTotal &&
+                Objects.equals(ngramCounts, that.ngramCounts);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(order, ngramCounts, nbWordsTotal);
+    }
 }

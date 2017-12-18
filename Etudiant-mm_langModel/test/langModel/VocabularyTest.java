@@ -12,6 +12,7 @@ import org.junit.rules.TestName;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+@SuppressWarnings({"unused", "unchecked", "WeakerAccess"})
 public class VocabularyTest {
     @Test
     public void sizeIsZeroIfNew(){
@@ -53,6 +54,22 @@ public class VocabularyTest {
         }
     }
 
+    @Test
+    public void readIsSameAsWriteRead(){
+        Vocabulary v = new Vocabulary();
+        try {
+            v.readVocabularyFile(VALID_FILE_PATH);
+            v.writeVocabularyFile("out.txt");
+
+            Vocabulary voc = new Vocabulary();
+            v.readVocabularyFile("out.txt");
+
+            assertEquals(v, voc);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 
     /**
@@ -81,4 +98,6 @@ public class VocabularyTest {
         str += "======================";
         System.out.println(str);
     }
+
+    public static String VALID_FILE_PATH = "vocab.txt";
 }
