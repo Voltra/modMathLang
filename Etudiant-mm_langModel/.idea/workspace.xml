@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="354bc4c2-1f85-4d7e-bfd0-55785cf0bda5" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/test/langModel/vocab.txt" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/bin/langModel/Vocabulary.class" afterPath="$PROJECT_DIR$/bin/langModel/Vocabulary.class" />
-      <change beforePath="$PROJECT_DIR$/bin/langModel/VocabularyTest.class" afterPath="$PROJECT_DIR$/bin/langModel/VocabularyTest.class" />
-      <change beforePath="$PROJECT_DIR$/src/langModel/NgramCounts.java" afterPath="$PROJECT_DIR$/src/langModel/NgramCounts.java" />
-      <change beforePath="$PROJECT_DIR$/src/langModel/Vocabulary.java" afterPath="$PROJECT_DIR$/src/langModel/Vocabulary.java" />
-      <change beforePath="$PROJECT_DIR$/test/langModel/VocabularyTest.java" afterPath="$PROJECT_DIR$/test/langModel/VocabularyTest.java" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
     </list>
     <ignored path="$PROJECT_DIR$/bin/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -29,7 +23,7 @@
     <splitter split-orientation="horizontal" split-proportion="0.5">
       <split-first>
         <leaf>
-          <file leaf-file-name="VocabularyTest.java" pinned="false" current-in-tab="true">
+          <file leaf-file-name="VocabularyTest.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/test/langModel/VocabularyTest.java">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="339">
@@ -39,6 +33,16 @@
                     <element signature="e#2107#2108#0" expanded="true" />
                     <element signature="e#2201#2202#0" expanded="true" />
                   </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/.gitignore">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="0">
+                  <caret line="0" column="1" lean-forward="false" selection-start-line="0" selection-start-column="1" selection-end-line="0" selection-end-column="1" />
+                  <folding />
                 </state>
               </provider>
             </entry>
@@ -93,6 +97,7 @@
         <option value="$PROJECT_DIR$/src/langModel/Vocabulary.java" />
         <option value="$PROJECT_DIR$/test/langModel/VocabularyTest.java" />
         <option value="$PROJECT_DIR$/src/langModel/NgramCounts.java" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -447,6 +452,14 @@
             <element signature="e#2107#2108#0" expanded="true" />
             <element signature="e#2201#2202#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="1" lean-forward="false" selection-start-line="0" selection-start-column="1" selection-end-line="0" selection-end-column="1" />
+          <folding />
         </state>
       </provider>
     </entry>
