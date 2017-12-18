@@ -1,7 +1,10 @@
 package langModel;
 
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 /**
@@ -20,8 +23,7 @@ public class NgramUtils {
 	 * @return the number of words of the given sequence.
 	 */
 	public static int getSequenceSize (String sequence) {
-		//TODO
-		return -1;
+	    return Arrays.asList(sequence.split("(\\b+|\\s+)")).size();
 	}
 
 	
@@ -39,9 +41,12 @@ public class NgramUtils {
 	 * @return history of the given n-gram (the length of the history is order-1).  
 	 */
 	public static String getHistory (String ngram, int order) {
-		//TODO
-		
-		return "";
+	    String ret = "";
+        List<String> seq = Arrays.asList(ngram.split("(\\s+)")).stream().filter(str -> !str.equals(" ")).collect(Collectors.toList());
+		seq.remove(seq.size()-1);
+		for (int i = seq.size()-order; i < seq.size(); i++)
+            ret += " "+seq.get(i);
+        return ret;
 	}
 
 
@@ -61,8 +66,27 @@ public class NgramUtils {
 	 * @return the list of n-grams constructed from the sentence.
 	 */
 	public static List<String> decomposeIntoNgrams (String sentence, int order) {
-		//TODO
-		return null;
+        List<String> sentenceArray = Arrays.asList(sentence.split("(\\s+)")).stream().filter(str -> !str.equals(" ")).collect(Collectors.toList());
+        ArrayList<String> ret = new ArrayList<>();
+        int last = 0;
+
+        for (int i = 1; i < order+1; i++) {
+            String tmp = "";
+            for (int j = 0; j < i; j++)
+                tmp += " "+sentenceArray.get(j);
+            ret.add(tmp.trim());
+            last = i;
+        }
+
+        for (int i = last+1; i+order-2 < sentenceArray.size(); i++) {
+            String tmp = "";
+            for (int j = last; j < i+order-1; j++)
+                tmp += " "+sentenceArray.get(j);
+            ret.add(tmp.trim());
+            last += 1;
+        }
+
+	    return ret;
 	}
 	
 	
@@ -93,8 +117,19 @@ public class NgramUtils {
 	 * @return a list of generated n-grams from the sentence.
 	 */
 	public static List<String> generateNgrams (String sentence, int minOrder, int maxOrder) {
-		//TODO
-		return null;
+        List<String> sentenceArray = Arrays.asList(sentence.split("(\\s+)")).stream().filter(str -> !str.equals(" ")).collect(Collectors.toList());
+        ArrayList<String> ret = new ArrayList<>();
+
+        for (int n = minOrder+1; n <= maxOrder+1; n++) {
+            for (int i = 0; i <= sentenceArray.size()-n+1; i++) {
+                String tmp = "";
+                for (int j = i; j < i+n-1; j++)
+                    tmp += " "+sentenceArray.get(j);
+                ret.add(tmp);
+            }
+        }
+
+        return ret;
 	}
 	
 	/**
@@ -106,8 +141,16 @@ public class NgramUtils {
 	 * @return the sequence of words with OOV tags according to the vocabulary. 
 	 */
 	public static String getStringOOV(String s, VocabularyInterface vocab) {
-		//TODO
-		return "";
-	}
+        List<String> sentenceArray = Arrays.asList(s.split("(\\s+)")).stream().filter(str -> !str.equals(" ")).collect(Collectors.toList());
+        String ret = "";
+
+        for (String word : sentenceArray) {
+            if (vocab.contains(word))
+                ret += " "+word;
+            else ret += " "+Vocabulary.OOV_TAG;
+        }
+
+        return  ret;
+    }
 
 }
