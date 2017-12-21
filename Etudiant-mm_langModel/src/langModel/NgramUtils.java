@@ -4,6 +4,7 @@ package langModel;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 
@@ -23,7 +24,12 @@ public class NgramUtils {
 	 * @return the number of words of the given sequence.
 	 */
 	public static int getSequenceSize (String sequence) {
-	    return Arrays.asList(sequence.split("(\\b+|\\s+)")).size();
+	    return Arrays.asList(sequence.split("\\s+")).stream()
+		.filter(Objects::nonNull)
+		.filter(str -> !str.matches("\\s*"))
+        //.peek(System.out::println)
+        .collect(Collectors.toList())
+		.size();
 	}
 
 	
