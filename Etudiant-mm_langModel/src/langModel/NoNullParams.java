@@ -3,6 +3,7 @@ package langModel;
 import java.util.Arrays;
 import java.util.Objects;
 
+@SuppressWarnings({"unused", "unchecked", "WeakerAccess"})
 public abstract class NoNullParams {
     public static void assertNoneNull(Object... params){
         if(!noneIsNull(params))
@@ -18,6 +19,10 @@ public abstract class NoNullParams {
                 .count();
 
         return nullCount == 0;
+    }
+
+    public static boolean anyIsNull(Object... params){
+        return noneIsNull(params);
     }
 
     public final static String NULL_ERROR_MESSAGE = "Parameters must not be null";

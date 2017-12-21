@@ -16,7 +16,7 @@ public class LaplaceLanguageModel extends NaiveLanguageModel {
 	public Double getNgramProb(String ngram) {
 		NoNullParams.assertNoneNull(ngram);
 
-		if(NoNullParams.noneIsNull(this.ngramCounts, this.vocabulary))
+		if(!NoNullParams.noneIsNull(this.ngramCounts, this.vocabulary))
 		    return Double.NaN;
 
         int order = this.getLMOrder();
