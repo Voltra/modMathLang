@@ -45,7 +45,7 @@ public class UnknownAuthorRecognizer1 extends AuthorRecognizer1 {
 	}
 
 	private boolean authorIsUnknown(String sentence){
-		return true;
+		return false;
 	}
 
 	

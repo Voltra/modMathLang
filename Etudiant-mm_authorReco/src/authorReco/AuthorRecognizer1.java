@@ -56,23 +56,7 @@ public class AuthorRecognizer1 extends AuthorRecognizerAbstractClass {
 	 */
 	public String recognizeAuthorSentence(String sentence) {
 		AuthorConfigurationFile cfg = this.configLangModels;
-		Map<String, Double> probabilities = new HashMap<>();
-		for(String author : cfg.getAuthors()){
-		    Double bestProb = cfg.getNgramCountPath(author).stream()//Stream<String> :: lm paths
-            .map(path -> { //Stream<NgramCountsInterface> :: ngram counts
-                NgramCountsInterface n = new NgramCounts();
-                n.readNgramCountsFile(path);
-                return n;
-            }).map(ngramCount -> { //Stream<LanguageModelInterface> :: lm from ngram counts
-                LanguageModelInterface lm = new LaplaceLanguageModel();
-                lm.setNgramCounts(ngramCount, this.getVocabularyLM());
-                return lm;
-            }).map(lm -> lm.getSentenceProb(sentence)) //Stream<Double> :: probability from the model
-            .reduce(Double::max) //Optional<Double> ::  best proba
-            .orElse(0.0);//Double :: best proba (or 0)
-
-            probabilities.put(author, bestProb);
-        }
+		Map<String, Double> probabilities = this.getProbabilityMap(sentence, cfg);
 
         Map.Entry<String, Double> defaultEntry = new Map.Entry<String, Double>() {
             Double val = 0.0;
@@ -91,7 +75,29 @@ public class AuthorRecognizer1 extends AuthorRecognizerAbstractClass {
 		//return UNKNOWN_AUTHOR;
 	}
 	
-	
+	public Map<String, Double> getProbabilityMap(String sentence, AuthorConfigurationFile cfg){
+        Map<String, Double> probabilities = new HashMap<>();
+
+        for(String author : cfg.getAuthors()){
+            Double bestProb = cfg.getNgramCountPath(author).stream()//Stream<String> :: lm paths
+            .map(path -> { //Stream<NgramCountsInterface> :: ngram counts
+                NgramCountsInterface n = new NgramCounts();
+                n.readNgramCountsFile(path);
+                return n;
+            }).map(ngramCount -> { //Stream<LanguageModelInterface> :: lm from ngram counts
+                LanguageModelInterface lm = new LaplaceLanguageModel();
+                lm.setNgramCounts(ngramCount, super.getVocabularyLM());
+                return lm;
+            }).map(lm -> lm.getSentenceProb(sentence)) //Stream<Double> :: probability from the model
+            //.peek(System.out::println)
+            .reduce(Double::max) //Optional<Double> ::  best proba if one
+            .orElse(0.0);//Double :: best proba (or 0)
+
+            probabilities.put(author, bestProb);
+        }
+
+        return probabilities;
+    }
 	
 	/**
 	 * Main method.
