@@ -48,10 +48,14 @@ public class NgramUtils {
 	 */
 	public static String getHistory (String ngram, int order) {
 	    String ret = "";
-        List<String> seq = Arrays.asList(ngram.split("(\\s+)")).stream().filter(str -> !str.equals(" ")).collect(Collectors.toList());
+        List<String> seq = Arrays.stream(ngram.split("(\\s+)")).filter(str -> !str.equals(" ")).collect(Collectors.toList());
 		seq.remove(seq.size()-1);
-		for (int i = seq.size()-order; i < seq.size(); i++)
-            ret += " "+seq.get(i);
+
+		//TODO: Fix below
+		if(seq.size() - order >= 0) {//Temporary debug
+			for (int i = seq.size() - order; i < seq.size(); i++)//gives -1
+				ret += " " + seq.get(i);
+		}
         return ret;
 	}
 
