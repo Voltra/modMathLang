@@ -69,7 +69,6 @@ public class BaselineAuthorRecognizer extends AuthorRecognizerAbstractClass {
 		
 
 		//computation of the performance of the recognition system
-        double perf = RecognizerPerformance.evaluate(REF, OUTPUT);
-        System.out.println("perf: " + perf);
+        System.out.println( RecognizerPerformance.evaluateAuthors(REF, OUTPUT) );
 	}
 }

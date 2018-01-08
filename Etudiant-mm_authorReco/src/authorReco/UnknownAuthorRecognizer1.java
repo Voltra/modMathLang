@@ -41,8 +41,11 @@ public class UnknownAuthorRecognizer1 extends AuthorRecognizer1 {
 	 * @return the author of the sentence as recognized by the recognition system.
 	 */
 	public String recognizeAuthorSentence(String sentence) {
-		// TODO
-		return UNKNOWN_AUTHOR;
+		return authorIsUnknown(sentence) ? UNKNOWN_AUTHOR : super.recognizeAuthorSentence(sentence);
+	}
+
+	private boolean authorIsUnknown(String sentence){
+		return true;
 	}
 
 	
@@ -54,12 +57,22 @@ public class UnknownAuthorRecognizer1 extends AuthorRecognizer1 {
 	 */
 	public static void main(String[] args) {
 		//initialization of the recognition system
-		
-		
+		final String CURR_PATH = System.getProperty("user.dir");
+		final String CONFIG = CURR_PATH + "/lm/small_author_corpus/fichConfig_bigram_1000sentences.txt";
+		final String FILE = CURR_PATH + "/data/small_author_corpus/validation/sentences_100sentences.txt";
+		final String OUTPUT = CURR_PATH + "/data/output/unk1.txt";
+		final String REF = CURR_PATH + "/data/small_author_corpus/validation/authors_100sentences_ref.txt";
+		final String VOCAB = CURR_PATH + "/lm/small_author_corpus/corpus_20000.vocab";
+		final String AUTHOR_FILE = CURR_PATH + "/data/small_author_corpus/validation/authors.txt";
+		AuthorRecognizerAbstractClass bar = new UnknownAuthorRecognizer1(CONFIG, VOCAB, AUTHOR_FILE);
+
+
 		//computation of the hypothesis author file
-				
-				
+		bar.recognizeFileLanguage(FILE, OUTPUT);
+
+
 		//computation of the performance of the recognition system
+		System.out.println( RecognizerPerformance.evaluateAuthors(REF, OUTPUT) );
 	}
 
 }

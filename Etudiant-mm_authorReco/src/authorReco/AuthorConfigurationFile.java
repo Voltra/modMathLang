@@ -97,7 +97,7 @@ public class AuthorConfigurationFile {
 	private void addTuple2AuthorNgramCountMap(String author, String ngramCountName, String ngramCountFilePath) {
 		Map<String,String> namePathMap = null;
 		if (! getAuthorNgramCountMap().containsKey(author)) 
-			 namePathMap = new HashMap<String,String>();
+			 namePathMap = new HashMap<String, String>();
 		else 
 			namePathMap = getAuthorNgramCountMap().get(author);
 		 namePathMap.put(ngramCountName, ngramCountFilePath);
