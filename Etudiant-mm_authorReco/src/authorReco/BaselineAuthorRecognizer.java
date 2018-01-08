@@ -56,12 +56,20 @@ public class BaselineAuthorRecognizer extends AuthorRecognizerAbstractClass {
 	 */
 	public static void main(String[] args) {
 		//initialization of the recognition system
+		final String CURR_PATH = System.getProperty("user.dir");
+		final String CONFIG = CURR_PATH + "/lm/small_author_corpus/fichConfig_bigram_1000sentences.txt";
+		final String FILE = CURR_PATH + "/data/small_author_corpus/validation/sentences_100sentences.txt";
+		final String OUTPUT = CURR_PATH + "/data/output/baseline.txt";
+		final String REF = CURR_PATH + "/data/small_author_corpus/validation/authors_100sentences_ref.txt";
+		AuthorRecognizerAbstractClass bar = new BaselineAuthorRecognizer(CONFIG);
 		
 		
 		//computation of the hypothesis author file
+        bar.recognizeFileLanguage(FILE, OUTPUT);
 		
 
 		//computation of the performance of the recognition system
-
+        double perf = RecognizerPerformance.evaluate(REF, OUTPUT);
+        System.out.println("perf: " + perf);
 	}
 }
