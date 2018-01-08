@@ -69,11 +69,11 @@ public class Vocabulary implements VocabularyInterface {
 		NoNullParams.assertNoneNull(filePath);
 
 		Set<String> set = new HashSet<>();
-		MiscUtils.readTextFileAsStringList(filePath).stream()
-        .map(String::toLowerCase)
-		.map(line -> NgramUtils.decomposeIntoNgrams(line, 1))
-		.filter(Objects::nonNull)
-		.forEach(set::addAll);
+		MiscUtils.readTextFileAsStringList(filePath).stream()//Stream<String> :: lines
+        .map(String::toLowerCase)//Stream<String> :: lines to lowercase
+		.map(line -> NgramUtils.decomposeIntoNgrams(line, 1))//Stream<List<String>> :: lines to ngrams
+		.filter(Objects::nonNull)//Stream<List<String>> :: remove nulls
+		.forEach(set::addAll);//Stream<List<String>> :: add all ngrams to the tmp set
 		this.scanNgramSet(set);
 	}
 
@@ -81,10 +81,10 @@ public class Vocabulary implements VocabularyInterface {
 	public void writeVocabularyFile(String filePath) {
 		NoNullParams.assertNoneNull(filePath);
 
-		String fileContent = this.vocabulary.stream()
-        .map(String::toLowerCase)
-        .map(str -> str+"\n")
-		.reduce("", String::concat);
+		String fileContent = this.vocabulary.stream()//Stream<String> :: words
+        .map(String::toLowerCase)//Stream<String> :: words to lowercase
+        .map(str -> str+"\n")//Stream<String> :: words with a new line character
+		.reduce("", String::concat);//String :: concatenate words
 
 		MiscUtils.writeFile(fileContent, filePath, false);
 	}

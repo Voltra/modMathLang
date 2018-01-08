@@ -127,39 +127,40 @@ public class NgramCounts implements NgramCountsInterface {
 		NoNullParams.assertNoneNull(filePath, vocab, maximalOrder);
 
 		Map<String, Integer> ngramCounts = MiscUtils.readTextFileAsStringList(filePath)
-        .stream()//List<String>
-        .filter(Objects::nonNull)
-        .filter(line -> !line.matches("\\s+"))//List<String>
-        .map(String::toLowerCase)//List<String>
-        .map(line -> NgramUtils.getStringOOV(line, vocab))//List<String>
-        .map(line -> NgramUtils.decomposeIntoNgrams(line, maximalOrder))//List<List<String>>
-        .filter(Objects::nonNull)//List<List<String>>
+        .stream()//Stream<String> :: lines
+        .filter(Objects::nonNull)//Stream<String> :: remove null objects
+        .filter(line -> !line.matches("\\s+"))//Stream<String> :: remove "whitespaces only" strings
+        .map(String::toLowerCase)//Stream<String> :: set to lowercase
+        .map(line -> NgramUtils.getStringOOV(line, vocab))//Stream<String> :: replace unknown tokens by the unknown token (<unk>)
+        .map(line -> NgramUtils.decomposeIntoNgrams(line, maximalOrder))//Stream<List<String>> :: decompose a line into ngams
+        .filter(Objects::nonNull)//Stream<List<String>> :: remove null objects
         .map(ngrams -> {
             Map<String, Integer> map = new HashMap<>();
-            ngrams.stream()
-            .filter(Objects::nonNull)
+            ngrams.stream()//Stream<String> ::  ngrams
+            .filter(Objects::nonNull)//Stream<String> :: remove nulls
             .forEach(ngram -> {
                 if(!map.containsKey(ngram))
                     map.put(ngram, 0);
 
                 int count = map.get(ngram);
                 map.replace(ngram, count+1);
-            });
+            });//Stream<String> :: insert ngram counts
 
             return map;
-        })//List<HashMap<String, Integer>>
+        })//Stream<HashMap<String, Integer>> :: transform ngrams to ngram counts
         .reduce(new HashMap<>(), (acc, elem)->{
-            elem.entrySet().forEach(entry -> {
+            elem.entrySet()//Set<Map.Entry<String, Integer>> :: ngram counts
+			.forEach(entry -> {
                 if(!acc.containsKey(entry.getKey()))
                     acc.put(entry.getKey(), entry.getValue());
                 else{
                     int oldCount = acc.get(entry.getKey());
                     acc.replace(entry.getKey(), oldCount + entry.getValue());
                 }
-            });
+            });//Set<Entry<String, Integer>> ::  merge all ngram counts
 
             return acc;
-        });//HashMap<String, Integer>
+        });//HashMap<String, Integer> :: processed merged ngramCounts
 
 		this.ngramCounts = ngramCounts;
 		this.updateWordsTotal();
@@ -171,10 +172,10 @@ public class NgramCounts implements NgramCountsInterface {
 	public void writeNgramCountFile(String filePath) {
 		NoNullParams.assertNoneNull(filePath);
 
-		String fileContent = this.ngramCounts.entrySet()
-        .stream()//Set<Entry<String, Integer>>
-        .map(entry -> entry.getKey() + "\t" + entry.getValue())//String
-        .reduce("", String::concat);//String
+		String fileContent = this.ngramCounts.entrySet()//Set<Entry<String, Integer>> :: ngram counts
+        .stream()//Stream<Entry<String, Integer>> :: ngram counts
+        .map(entry -> entry.getKey() + "\t" + entry.getValue())//Stream<String> ::  converted to its string representation
+        .reduce("", String::concat);//String :: concatenate ngram counts
 
 		MiscUtils.writeFile(fileContent, filePath, false);
 	}

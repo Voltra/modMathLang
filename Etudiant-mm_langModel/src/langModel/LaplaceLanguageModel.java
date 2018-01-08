@@ -26,6 +26,9 @@ public class LaplaceLanguageModel extends NaiveLanguageModel {
 		double ngram_occ = this.ngramCounts.getCounts(ngram);
         double hist_occ = this.ngramCounts.getCounts(history);
 
+        if(hist_occ+words_amount-1 == 0)
+            return Double.NaN;
+
         return Math.abs(
         		(1 + ngram_occ) / (hist_occ + words_amount - 1)
 		);
