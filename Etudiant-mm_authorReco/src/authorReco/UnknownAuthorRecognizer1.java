@@ -44,7 +44,7 @@ public class UnknownAuthorRecognizer1 extends AuthorRecognizer1 {
 		return authorIsUnknown(sentence) ? UNKNOWN_AUTHOR : super.recognizeAuthorSentence(sentence);
 	}
 
-	private boolean authorIsUnknown(String sentence){
+	private boolean authorIsUnknown(String sentence){ //TODO: Find something that would actually work :/
 		final double DELTA = Math.pow(10, -1);
 		Map<String, Double> probs = super.getProbabilityMap(sentence, this.configLangModels);
 		double isSame = probs.entrySet().stream()
