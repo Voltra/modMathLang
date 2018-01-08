@@ -20,6 +20,8 @@ public class LaplaceLanguageModel extends NaiveLanguageModel {
 		    return Double.NaN;
 
         int order = this.getLMOrder();
+        System.out.println("order:"+order);
+        System.out.println("ngram:"+ngram);
         double words_amount = this.vocabulary.getSize();
 		String history = NgramUtils.getHistory(ngram, order);
 

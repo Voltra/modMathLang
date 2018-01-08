@@ -47,15 +47,16 @@ public class NgramUtils {
 	 * @return history of the given n-gram (the length of the history is order-1).  
 	 */
 	public static String getHistory (String ngram, int order) {
+	    if (ngram.split("(\\s+)").length <= 1)
+	        return "";
+
 	    String ret = "";
         List<String> seq = Arrays.stream(ngram.split("(\\s+)")).filter(str -> !str.equals(" ")).collect(Collectors.toList());
 		seq.remove(seq.size()-1);
 
-		//TODO: Fix below
-		if(seq.size() - order >= 0) {//Temporary debug
-			for (int i = seq.size() - order; i < seq.size(); i++)//gives -1
-				ret += " " + seq.get(i);
-		}
+        for (int i = seq.size() - order +1; i < seq.size(); i++)//gives -1
+            ret += " " + seq.get(i);
+
         return ret;
 	}
 
