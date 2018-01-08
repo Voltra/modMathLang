@@ -45,7 +45,27 @@ public class UnknownAuthorRecognizer1 extends AuthorRecognizer1 {
 	}
 
 	private boolean authorIsUnknown(String sentence){
-		return false;
+		final double DELTA = Math.pow(10, -1);
+		Map<String, Double> probs = super.getProbabilityMap(sentence, this.configLangModels);
+		double isSame = probs.entrySet().stream()
+        .map(Map.Entry::getValue)
+        .reduce(-404.0, (acc, elem)->{
+            if(acc == -404.0)
+                return elem;
+
+            if(acc == -1.0)
+                return acc;
+
+            double inf = acc - DELTA;
+            double sup = acc + DELTA;
+
+            if(inf <= elem && elem <= sup)
+                return elem;
+            else
+                return -1.0;
+        });
+
+		return isSame < 0;
 	}
 
 	
