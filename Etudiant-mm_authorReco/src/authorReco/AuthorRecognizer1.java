@@ -90,8 +90,7 @@ public class AuthorRecognizer1 extends AuthorRecognizerAbstractClass {
                 return lm;
             }).map(lm -> lm.getSentenceProb(sentence)) //Stream<Double> :: probability from the model
             //.peek(System.out::println)
-            .reduce(Double::max) //Optional<Double> ::  best proba if one
-            .orElse(0.0);//Double :: best proba (or 0)
+            .reduce(0.0, Double::max); //Double ::  best proba (or 0)
 
             probabilities.put(author, bestProb);
         }
