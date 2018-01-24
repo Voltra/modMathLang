@@ -39,7 +39,7 @@ public class UnknownAuthorRecognizer2 extends UnknownAuthorRecognizer1{
         return entry.getValue() < getMin() ? BaselineAuthorRecognizer.UNKNOWN_AUTHOR : entry.getKey();
     }
 
-    public Double getMin(){ return Math.pow(10, -5); }
+    public Double getMin(){ return Math.pow(10, -12); }
 
     public static void main(String[] args) {
         //initialization of the recognition system
@@ -50,7 +50,7 @@ public class UnknownAuthorRecognizer2 extends UnknownAuthorRecognizer1{
         final String REF = CURR_PATH + "/data/small_author_corpus/validation/authors_100sentences_ref.txt";
         final String VOCAB = CURR_PATH + "/lm/small_author_corpus/corpus_20000.vocab";
         final String AUTHOR_FILE = CURR_PATH + "/data/small_author_corpus/validation/authors.txt";
-        AuthorRecognizerAbstractClass bar = new UnknownAuthorRecognizer1(CONFIG, VOCAB, AUTHOR_FILE);
+        AuthorRecognizerAbstractClass bar = new UnknownAuthorRecognizer2(CONFIG, VOCAB, AUTHOR_FILE);
 
 
         //computation of the hypothesis author file

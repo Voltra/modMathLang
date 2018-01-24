@@ -14,7 +14,7 @@ JAOUEN Romain
 
 ### Reconnaissance d'auteurs
 
-//
+Les classes de reconnaissance d'auteurs sont implémentées (`AuthorRecognizer1` et `UnknownRecognizer1`) et une classe additionnelle (`UnknownRecognizer2`).
 
 ## Algorithmes de Reconnaissance
 
@@ -43,8 +43,13 @@ Cet algorithme est composé de deux étapes :
 Nous utilisons le même algorithme pour générer le tableau associatif. Afin de déterminer si l'auteur de la phrase est inconnu (au modèle), nous avons utilisé le procédé suivant :
 
 * Nous déterminons un `Delta` (fixé ici à 10^-6)
+
 * Nous prenons la première probabilité `p`
-* Nous déterminons pour chaque autre probabilité si cette dernière appartient à l'interval `[p-Delta;p+Delta]`
+
+* Nous déterminons pour chaque autre probabilité si cette dernière appartient à l'intervalle
+
+   `[ p-Delta ; p+Delta ]`
+
 * Si tel est le cas, alors nous déterminons que l'auteur de la phrase est inconnu
 
 
