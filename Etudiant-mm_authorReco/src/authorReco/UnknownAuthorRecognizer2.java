@@ -36,10 +36,11 @@ public class UnknownAuthorRecognizer2 extends UnknownAuthorRecognizer1{
             return acc;
         });
 
+        System.out.println(entry.getValue());
         return entry.getValue() < getMin() ? BaselineAuthorRecognizer.UNKNOWN_AUTHOR : entry.getKey();
     }
 
-    public Double getMin(){ return Math.pow(10, -12); }
+    public Double getMin(){ return Math.pow(10, -200); }
 
     public static void main(String[] args) {
         //initialization of the recognition system

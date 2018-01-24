@@ -59,4 +59,4 @@ Nous utilisons le même algorithme pour générer le tableau associatif. Afin de
 Cet algorithme est encore une fois, composé de deux étapes:
 
 * Calcul de la probabilité selon `AuthorRecognizer1`
-* Si la probabilité est inférieure à une valeur fixe (`Min`) alors l'auteur est considéré comme inconnu, sinon l'auteur correspondant est désigné comme en étant l'auteur.
+* Si la probabilité est inférieure à une valeur fixe (`Min`, fixé ici à 10^-200) alors l'auteur est considéré comme inconnu, sinon l'auteur correspondant est désigné comme en étant l'auteur.
