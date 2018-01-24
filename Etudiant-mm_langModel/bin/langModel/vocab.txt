@@ -1,6 +1,0 @@
-<s>
-unit
-test
-for
-the
-win
