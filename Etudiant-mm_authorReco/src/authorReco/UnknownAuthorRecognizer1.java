@@ -44,7 +44,7 @@ public class UnknownAuthorRecognizer1 extends AuthorRecognizer1 {
 		return authorIsUnknown(sentence) ? UNKNOWN_AUTHOR : super.recognizeAuthorSentence(sentence);
 	}
 
-	private double getSimilarityDelta(){ return Math.pow(10, -6); }
+	private double getSimilarityDelta(){ return Math.pow(10, -6);  }
 
 	private boolean authorIsUnknown(String sentence){ //TODO: Find something that would actually work :/
 		final double DELTA = this.getSimilarityDelta();
