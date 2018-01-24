@@ -6,6 +6,6 @@ Etudiant-mm_authorReco/.idea/**
 Etudiant-mm_langMode/.idea/**
 Etudiant-mm_useLangModel/.idea/**
 
-Etudiant-mm_authorReco/bin/**
-Etudiant-mm_langMode/bin/**
-Etudiant-mm_useLangModel/bin/**
+Etudiant-mm_authorReco/bin/*.class
+Etudiant-mm_langMode/bin/*.class
+Etudiant-mm_useLangModel/bin/*.class
