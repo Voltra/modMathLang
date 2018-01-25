@@ -54,7 +54,7 @@ public class NgramUtils {
         List<String> seq = Arrays.stream(ngram.split("(\\s+)")).filter(str -> !str.equals(" ")).collect(Collectors.toList());
 		seq.remove(seq.size()-1);
 
-        for (int i = seq.size() - order +1; i < seq.size(); i++)//gives -1
+        for (int i = seq.size() - order +1; i < seq.size(); i++)
             ret += " " + seq.get(i);
 
         return ret;
