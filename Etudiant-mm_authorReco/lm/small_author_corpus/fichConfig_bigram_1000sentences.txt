@@ -1,0 +1,10 @@
+balzac	balzac_bi	lm/small_author_corpus/bigram_balzac.lm
+hugo	hugo_bi	lm/small_author_corpus/bigram_hugo.lm
+maupassant	maupassant_bi	lm/small_author_corpus/bigram_maupassant.lm
+moliere	moliere_bi	lm/small_author_corpus/bigram_moliere.lm
+montaigne	montaigne_bi	lm/small_author_corpus/bigram_montaigne.lm
+sand	sand_bi	lm/small_author_corpus/bigram_sand.lm
+tocqueville	tocqueville_bi	lm/small_author_corpus/bigram_tocqueville.lm
+tolstoi	tolstoi_bi	lm/small_author_corpus/bigram_tolstoi.lm
+verne	verne_bi	lm/small_author_corpus/bigram_verne.lm
+zola	zola_bi	lm/small_author_corpus/bigram_zola.lm

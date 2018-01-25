@@ -1,0 +1,10 @@
+balzac	balzac	lm/small_author_corpus/balzac.lm
+hugo	hugo	lm/small_author_corpus/hugo.lm
+maupassant	maupassant	lm/small_author_corpus/maupassant.lm
+moliere	moliere	lm/small_author_corpus/moliere.lm
+montaigne	montaigne	lm/small_author_corpus/montaigne.lm
+sand	sand	lm/small_author_corpus/sand.lm
+tocqueville	tocqueville	lm/small_author_corpus/tocqueville.lm
+tolstoi	tolstoi	lm/small_author_corpus/tolstoi.lm
+verne	verne	lm/small_author_corpus/verne.lm
+zola	zola	lm/small_author_corpus/zola.lm

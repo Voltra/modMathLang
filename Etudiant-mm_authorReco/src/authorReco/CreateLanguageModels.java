@@ -21,18 +21,19 @@ public class CreateLanguageModels {
 	 * @param args arguments of the main method.
 	 */
 	public static void main(String[] args) {
+	    String VOCAB = "src/lm/small_author_corpus/corpus_20000.vocab";
         File folder = new File("data/author_corpus/train");
         File[] listOfFiles = folder.listFiles();
 
+        Vocabulary vocab = new Vocabulary();
+        vocab.readVocabularyFile(VOCAB);
         for (File file : listOfFiles) {
             if (file.isFile()) {
                 System.out.println("Processing file " + file.getName());
-                Vocabulary vocab = new Vocabulary();
-                vocab.readVocabularyFile(file.getPath());
                 NgramCounts ngramCounts = new NgramCounts();
                 ngramCounts.scanTextFile(file.getPath(), vocab, 3);
-                String outputPath = "src/lm/test/";
-                vocab.writeVocabularyFile(outputPath+file.getName()+".vocab");
+                String outputPath = "data/test/models/";
+                //vocab.writeVocabularyFile(outputPath+file.getName()+".vocab");
                 ngramCounts.writeNgramCountFile(outputPath+file.getName()+".ngram");
             }
         }
