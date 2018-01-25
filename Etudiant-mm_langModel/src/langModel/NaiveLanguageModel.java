@@ -44,7 +44,7 @@ public class NaiveLanguageModel implements LanguageModelInterface {
 	public Double getNgramProb(String ngram) {
         if (ngram.equals(Vocabulary.SOS_TAG))
             return 1.0;
-        else if (ngramCounts.getMaximalOrder() == 1 && !ngram.equals(Vocabulary.SOS_TAG))
+        else if (ngramCounts.getMaximalOrder() == 1 && !ngram.equals(Vocabulary.EOS_TAG))
             return new Double(ngramCounts.getCounts(ngram)/ngramCounts.getTotalWordNumber());
         else if (ngramCounts.getMaximalOrder() > 2 && !ngram.equals(Vocabulary.EOS_TAG) && ngramCounts.getCounts(ngram) != 0)
             return new Double(ngramCounts.getCounts(ngram)/ngramCounts.getCounts(NgramUtils.getHistory(ngram, ngramCounts.getMaximalOrder())));
