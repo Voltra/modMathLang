@@ -31,7 +31,9 @@ public class CreateLanguageModels {
                 vocab.readVocabularyFile(file.getPath());
                 NgramCounts ngramCounts = new NgramCounts();
                 ngramCounts.scanTextFile(file.getPath(), vocab, 3);
-                String outputPath = ""
+                String outputPath = "src/lm/test/";
+                vocab.writeVocabularyFile(outputPath+file.getName()+".vocab");
+                ngramCounts.writeNgramCountFile(outputPath+file.getName()+".ngram");
             }
         }
 	}
