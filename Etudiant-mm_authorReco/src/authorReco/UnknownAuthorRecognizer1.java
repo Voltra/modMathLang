@@ -80,21 +80,17 @@ public class UnknownAuthorRecognizer1 extends AuthorRecognizer1 {
 	public static void main(String[] args) {
 		//initialization of the recognition system
 		final String CURR_PATH = System.getProperty("user.dir");
-		final String CONFIG = CURR_PATH + "/lm/small_author_corpus/fichConfig_bigram_1000sentences.txt";
-		final String FILE = CURR_PATH + "/data/small_author_corpus/validation/sentences_100sentences.txt";
-		final String OUTPUT = CURR_PATH + "/data/output/unk1.txt";
-		final String REF = CURR_PATH + "/data/small_author_corpus/validation/authors_100sentences_ref.txt";
-		final String VOCAB = CURR_PATH + "/lm/small_author_corpus/corpus_20000.vocab";
+		final String CONFIG = CURR_PATH + "/data/author_corpus/test/config.txt";
+		final String FILE = CURR_PATH + "/data/author_corpus/test/sentences.txt";
+		final String OUTPUT = CURR_PATH + "/data/author_corpus/test/authors-hyp1.txt";
+		//final String REF = CURR_PATH + "/data/small_author_corpus/validation/authors_100sentences_ref.txt";
+		final String VOCAB = CURR_PATH + "/src/lm/small_author_corpus/corpus_20000.vocab";
 		final String AUTHOR_FILE = CURR_PATH + "/data/small_author_corpus/validation/authors.txt";
 		AuthorRecognizerAbstractClass bar = new UnknownAuthorRecognizer1(CONFIG, VOCAB, AUTHOR_FILE);
 
 
 		//computation of the hypothesis author file
 		bar.recognizeFileLanguage(FILE, OUTPUT);
-
-
-		//computation of the performance of the recognition system
-		System.out.println( RecognizerPerformance.evaluateAuthors(REF, OUTPUT) );
 	}
 
 }

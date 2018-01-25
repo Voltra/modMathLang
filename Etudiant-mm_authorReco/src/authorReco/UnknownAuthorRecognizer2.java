@@ -45,7 +45,7 @@ public class UnknownAuthorRecognizer2 extends UnknownAuthorRecognizer1{
     public static void main(String[] args) {
         //initialization of the recognition system
         final String CURR_PATH = System.getProperty("user.dir");
-        final String CONFIG = CURR_PATH + "/src/lm/small_author_corpus/fichConfig_bigram_1000sentences.txt";
+        final String CONFIG = CURR_PATH + "/data/author_corpus/test/config.txt";
         final String FILE = CURR_PATH + "/data/author_corpus/test/sentences.txt";
         final String OUTPUT = CURR_PATH + "/data/author_corpus/test/authors-hyp2.txt";
         //final String REF = CURR_PATH + "/data/small_author_corpus/validation/authors_100sentences_ref.txt";
