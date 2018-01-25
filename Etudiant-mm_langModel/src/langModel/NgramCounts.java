@@ -174,7 +174,7 @@ public class NgramCounts implements NgramCountsInterface {
 
 		String fileContent = this.ngramCounts.entrySet()//Set<Entry<String, Integer>> :: ngram counts
         .stream()//Stream<Entry<String, Integer>> :: ngram counts
-        .map(entry -> entry.getKey() + "\t" + entry.getValue())//Stream<String> ::  converted to its string representation
+        .map(entry -> entry.getKey() + "\t" + entry.getValue() + "\n")//Stream<String> ::  converted to its string representation
         .reduce("", String::concat);//String :: concatenate ngram counts
 
 		MiscUtils.writeFile(fileContent, filePath, false);
@@ -212,6 +212,7 @@ public class NgramCounts implements NgramCountsInterface {
         }
 
         this.updateWordsTotal();
+		this.ngramCounts = ngramCounts;
 		this.order = ngramCounts.keySet().stream()
         .map(ngram -> ngram.split("\\s+").length)
         .reduce(0, Integer::max);

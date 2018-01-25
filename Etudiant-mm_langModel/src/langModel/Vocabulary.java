@@ -1,9 +1,11 @@
 package langModel;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 
 /**
@@ -61,7 +63,9 @@ public class Vocabulary implements VocabularyInterface {
 		NoNullParams.assertNoneNull(ngramSet);
 		ngramSet.stream()
         .map(String::toLowerCase)
-        .forEach(this::addWord);
+		.map(str -> Arrays.stream(str.split("\\s+")).filter(s -> !s.isEmpty()).collect(Collectors.toList()))
+		.forEach(strs -> strs.forEach(this::addWord));
+        //.forEach(this::addWord);
 	}
 
 	@Override
